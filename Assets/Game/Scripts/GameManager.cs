@@ -74,7 +74,7 @@ public class GameManager : MonoBehaviour
     {
         if (Input.GetMouseButtonDown(0))
         {
-            if (!Utilities.IsPointerOverUIObject())
+            if (!Utilities.IsPointerOverUIObject() && _circle != null)
             {
                 _circle.AddCoordinate(_mainCamera.ScreenToWorldPoint(Input.mousePosition));
                 StartCoroutine(_circle.Move());
@@ -110,6 +110,7 @@ public class GameManager : MonoBehaviour
         _coinsLeft--;
         if (_coinsLeft == 0)
         {
+            _circle = null;
             WinAction?.Invoke();
         }
     }
